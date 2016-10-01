@@ -1,7 +1,7 @@
 
 /* png.h - header file for PNG reference library
  *
- * libpng version 1.6.22beta03, February 19, 2016
+ * libpng version 1.6.22, May 26, 2016
  *
  * Copyright (c) 1998-2002,2004,2006-2016 Glenn Randers-Pehrson
  * (Version 0.96 Copyright (c) 1996, 1997 Andreas Dilger)
@@ -12,7 +12,7 @@
  * Authors and maintainers:
  *   libpng versions 0.71, May 1995, through 0.88, January 1996: Guy Schalnat
  *   libpng versions 0.89, June 1996, through 0.96, May 1997: Andreas Dilger
- *   libpng versions 0.97, January 1998, through 1.6.22beta03, February 19, 2016:
+ *   libpng versions 0.97, January 1998, through 1.6.22, May 26, 2016:
  *     Glenn Randers-Pehrson.
  *   See also "Contributing Authors", below.
  */
@@ -29,7 +29,7 @@
  * files that are distributed with libpng have other copyright owners and
  * are released under other open source licenses.
  *
- * libpng versions 1.0.7, July 1, 2000, through 1.6.22beta03, February 19, 2016, are
+ * libpng versions 1.0.7, July 1, 2000 through 1.6.22, May 26, 2016 are
  * Copyright (c) 2000-2002, 2004, 2006-2016 Glenn Randers-Pehrson, are
  * derived from libpng-1.0.6, and are distributed according to the same
  * disclaimer and license as libpng-1.0.6 with the following individuals
@@ -213,9 +213,9 @@
  *    ...
  *    1.0.19                  10    10019  10.so.0.19[.0]
  *    ...
- *    1.2.53                  13    10253  12.so.0.53[.0]
+ *    1.2.56                  13    10256  12.so.0.56[.0]
  *    ...
- *    1.5.23                  15    10523  15.so.15.23[.0]
+ *    1.5.27                  15    10527  15.so.15.27[.0]
  *    ...
  *    1.6.22                  16    10622  16.so.16.22[.0]
  *
@@ -245,13 +245,13 @@
  * Y2K compliance in libpng:
  * =========================
  *
- *    February 19, 2016
+ *    May 26, 2016
  *
  *    Since the PNG Development group is an ad-hoc body, we can't make
  *    an official declaration.
  *
  *    This is your unofficial assurance that libpng from version 0.71 and
- *    upward through 1.6.22beta03 are Y2K compliant.  It is my belief that
+ *    upward through 1.6.22 are Y2K compliant.  It is my belief that
  *    earlier versions were also Y2K compliant.
  *
  *    Libpng only has two year fields.  One is a 2-byte unsigned integer
@@ -313,9 +313,9 @@
  */
 
 /* Version information for png.h - this should match the version in png.c */
-#define PNG_LIBPNG_VER_STRING "1.6.22beta03"
+#define PNG_LIBPNG_VER_STRING "1.6.22"
 #define PNG_HEADER_VERSION_STRING \
-     " libpng version 1.6.22beta03 - February 19, 2016\n"
+     " libpng version 1.6.22 - May 26, 2016\n"
 
 #define PNG_LIBPNG_VER_SONUM   16
 #define PNG_LIBPNG_VER_DLLNUM  16
@@ -329,7 +329,7 @@
  * PNG_LIBPNG_VER_STRING, omitting any leading zero:
  */
 
-#define PNG_LIBPNG_VER_BUILD  03
+#define PNG_LIBPNG_VER_BUILD  0
 
 /* Release Status */
 #define PNG_LIBPNG_BUILD_ALPHA    1
@@ -346,7 +346,7 @@
 #define PNG_LIBPNG_BUILD_SPECIAL 32 /* Cannot be OR'ed with
                                        PNG_LIBPNG_BUILD_PRIVATE */
 
-#define PNG_LIBPNG_BUILD_BASE_TYPE PNG_LIBPNG_BUILD_BETA
+#define PNG_LIBPNG_BUILD_BASE_TYPE PNG_LIBPNG_BUILD_STABLE
 
 /* Careful here.  At one time, Guy wanted to use 082, but that would be octal.
  * We must not include leading zeros.
@@ -464,7 +464,7 @@ extern "C" {
 /* This triggers a compiler error in png.c, if png.c and png.h
  * do not agree upon the version number.
  */
-typedef char* png_libpng_version_1_6_22beta03;
+typedef char* png_libpng_version_1_6_22;
 
 /* Basic control structions.  Read libpng-manual.txt or libpng.3 for more info.
  *
@@ -1351,7 +1351,7 @@ PNG_EXPORT(229, void, png_set_scale_16, (png_structrp png_ptr));
 #endif
 
 #ifdef PNG_READ_STRIP_16_TO_8_SUPPORTED
-#define PNG_READ_16_TO_8 SUPPORTED /* Name prior to 1.5.4 */
+#define PNG_READ_16_TO_8_SUPPORTED /* Name prior to 1.5.4 */
 /* Strip the second byte of information from a 16-bit depth file. */
 PNG_EXPORT(48, void, png_set_strip_16, (png_structrp png_ptr));
 #endif
@@ -1502,8 +1502,8 @@ PNG_EXPORT(67, void, png_set_filter, (png_structrp png_ptr, int method,
 #define PNG_FILTER_UP      0x20
 #define PNG_FILTER_AVG     0x40
 #define PNG_FILTER_PAETH   0x80
-#define PNG_ALL_FILTERS (PNG_FILTER_NONE | PNG_FILTER_SUB | PNG_FILTER_UP | \
-                         PNG_FILTER_AVG | PNG_FILTER_PAETH)
+#define PNG_FAST_FILTERS (PNG_FILTER_NONE | PNG_FILTER_SUB | PNG_FILTER_UP)
+#define PNG_ALL_FILTERS (PNG_FAST_FILTERS | PNG_FILTER_AVG | PNG_FILTER_PAETH)
 
 /* Filter values (not flags) - used in pngwrite.c, pngwutil.c for now.
  * These defines should NOT be changed.

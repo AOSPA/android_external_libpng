@@ -1,7 +1,7 @@
 
 /* pngrtran.c - transforms the data in a row for PNG readers
  *
- * Last changed in libpng 1.6.22 [(PENDING RELEASE)]
+ * Last changed in libpng 1.6.22 [May 26, 2016]
  * Copyright (c) 1998-2002,2004,2006-2016 Glenn Randers-Pehrson
  * (Version 0.96 Copyright (c) 1996, 1997 Andreas Dilger)
  * (Version 0.88 Copyright (c) 1995, 1996 Guy Eric Schalnat, Group 42, Inc.)
@@ -159,7 +159,7 @@ png_set_background(png_structrp png_ptr,
    png_set_background_fixed(png_ptr, background_color, background_gamma_code,
       need_expand, png_fixed(png_ptr, background_gamma, "png_set_background"));
 }
-#  endif  /* FLOATING_POINT */
+#  endif /* FLOATING_POINT */
 #endif /* READ_BACKGROUND */
 
 /* Scale 16-bit depth files to 8-bit depth.  If both of these are set then the
@@ -1915,7 +1915,7 @@ png_init_read_transformations(png_structrp png_ptr)
             png_ptr->palette[i].blue = (png_byte)component;
          }
    }
-#endif  /* READ_SHIFT */
+#endif /* READ_SHIFT */
 }
 
 /* Modify the info structure to reflect the transformations.  The
