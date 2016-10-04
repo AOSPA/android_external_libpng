@@ -81,6 +81,7 @@ LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_SHARED_LIBRARIES := libz
 LOCAL_MODULE:= libpng_ndk
 LOCAL_SDK_VERSION := 14
+LOCAL_SDCLANG_LTO := true
 include $(BUILD_STATIC_LIBRARY)
 
 # For the device (static) for platform (retains fortify support)
@@ -103,6 +104,7 @@ LOCAL_SANITIZE := never
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_SHARED_LIBRARIES := libz
 LOCAL_MODULE:= libpng
+LOCAL_SDCLANG_LTO := true
 include $(BUILD_STATIC_LIBRARY)
 
 # For the device (shared)
@@ -124,6 +126,7 @@ LOCAL_ASFLAGS += $(common_ASFLAGS)
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 LOCAL_SHARED_LIBRARIES := libz
 LOCAL_MODULE:= libpng
+LOCAL_SDCLANG_LTO := true
 include $(BUILD_SHARED_LIBRARY)
 
 # For testing
